@@ -5,3 +5,7 @@ h1 {
 .link-container {
     margin-top: 10px;
 }
+
+.login-container {
+    height: 100vh;
+}
