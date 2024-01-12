@@ -14,7 +14,7 @@
     padding: 96px;
     box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -55,5 +55,5 @@
 
 .new-user-container .content form input {
     margin-top: 8px;
-    
+
 }
