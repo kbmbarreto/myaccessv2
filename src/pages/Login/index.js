@@ -11,7 +11,7 @@ export default function Login() {
   const history = useNavigate();
 
   const handleNewUserClick = () => {
-      alert("Em implementação, enquanto isso, entre em contato com o suporte.");
+      alert("Em implementação. Enquanto isso, entre em contato com o suporte.");
   };
 
   async function login(e) {
