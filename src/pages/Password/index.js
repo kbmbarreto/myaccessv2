@@ -16,6 +16,29 @@ export default function Password() {
 
     const history = useNavigate();
 
+    async function logout() {
+        localStorage.clear();
+        history('/');
+    }
+
+    async function deletePassword(id) {
+        try {
+            await api.delete(`myaccess/v2/password/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+
+            setPasswords(passwords.filter(password => password.id !== id))
+        } catch (ex) {
+            if (ex.response && ex.response.data && ex.response.data.status) {
+                alert(`Erro ${ex.response.data.status}, ${ex.response.data.error}`);
+            } else {
+                alert('Algo deu errado! Tente novamente mais tarde.');
+            }
+        }
+    }
+
     useEffect(() => {
         api.get('myaccess/v2/password/user/1', {
             headers: {
@@ -32,7 +55,7 @@ export default function Password() {
                 <img src={logo} alt= "Java"/>
                 <span>Bem vindo(a), <strong>{email}</strong></span>
                 <Link className="button" to="/newPassword">Cadastrar Senha</Link>
-                <button type="button">
+                <button onClick={logout} type="button">
                     <FiPower size={18} color="#251FC5"/>
                 </button>
             </header>
@@ -56,7 +79,7 @@ export default function Password() {
                             <FiEdit size={20} color="#251FC5"/>
                         </button>
                         <button type={"button"}>
-                            <FiTrash2 size={20} color="#251FC5"/>
+                            <FiTrash2 onClick={() => deletePassword(password.id)} size={20} color="#251FC5"/>
                         </button>
                     </li>
                 ))}
